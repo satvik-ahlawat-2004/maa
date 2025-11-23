@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AYUVOYAGE connects international wellness seekers to India's top Ayurvedic and mental-health healing centers. Analytics-powered medical tourism facilitation.">
+    <meta name="keywords" content="Ayurveda, medical tourism, wellness, India, mental health, healing centers, analytics">
+    <meta name="author" content="AYUVOYAGE">
+    <title>AYUVOYAGE - Travel, Heal, and Rebalance | Medical Tourism Facilitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           GLOBAL STYLES & CSS VARIABLES
+           ============================================ */
+        
+        :root {
+            /* Color Palette - Edit these to change theme colors */
+            --color-primary-green: #2d5016;      /* Deep forest green */
+            --color-light-green: #4a7c2a;        /* Lighter green */
+            --color-cream: #f5f1e8;              /* Beige/cream background */
+            --color-gold: #c9a961;               /* Gold accents */
+            --color-cta: #d97706;                /* Orange/amber for CTAs */
+            --color-white: #ffffff;
+            --color-text-dark: #1a1a1a;
+            --color-text-light: #666666;
+            --color-border: #e5e5e5;
+            
+            /* Typography - Edit font families here */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            
+            /* Spacing */
+            --section-padding: 80px 20px;
+            --container-max-width: 1200px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            background-color: var(--color-cream);
+            overflow-x: hidden;
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Smooth transitions for all interactive elements */
+        * {
+            transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* ============================================
+           NAVIGATION BAR
+           ============================================ */
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
+            padding: 12px 0;
+        }
+        
+        .nav-container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-primary-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            font-size: 14px;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-primary-green);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--color-primary-green);
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--color-primary-green);
+            padding: 5px;
+            z-index: 1001;
+        }
+        
+        @media (max-width: 968px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--color-white);
+                flex-direction: column;
+                padding: 40px 20px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+                z-index: 999;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                width: 100%;
+                padding: 15px 0;
+                border-bottom: 1px solid var(--color-border);
+            }
+            
+            .nav-menu a {
+                font-size: 18px;
+                width: 100%;
+                display: block;
+            }
+        }
+        
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        
+        .hero {
+            margin-top: 70px;
+            min-height: 95vh;
+            background: linear-gradient(135deg, rgba(45, 80, 22, 0.85), rgba(74, 124, 42, 0.7)),
+                        url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1920') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--color-white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(201, 169, 97, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 40px 20px;
+            z-index: 1;
+        }
+        
+        .hero-logo {
+            margin-bottom: 30px;
+        }
+        
+        .hero-logo img {
+            max-width: 300px;
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+        
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero .subheading {
+            font-size: 20px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        
+        .btn {
+            padding: 15px 35px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-family: var(--font-body);
+        }
+        
+        .btn-primary {
+            background-color: var(--color-cta);
+            color: var(--color-white);
+        }
+        
+        .btn-primary:hover {
+            background-color: #b86505;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(217, 119, 6, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-white);
+            border: 2px solid var(--color-white);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--color-white);
+            color: var(--color-primary-green);
+        }
+        
+        .hero-footer-note {
+            margin-top: 60px;
+            font-size: 12px;
+            opacity: 0.9;
+            font-style: italic;
+        }
+        
+        /* ============================================
+           SECTION STYLES
+           ============================================ */
+        
+        .section {
+            padding: var(--section-padding);
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 42px;
+            color: var(--color-primary-green);
+            text-align: center;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-gold), var(--color-cta));
+            border-radius: 2px;
+        }
+        
+        /* Statistics Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--color-primary-green), var(--color-light-green));
+            color: var(--color-white);
+            padding: 80px 20px;
+            margin: 0;
+            width: 100%;
+        }
+        
+        .stats-container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--color-gold);
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            opacity: 0.95;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Trust Indicators */
+        .trust-section {
+            background-color: var(--color-white);
+            padding: 60px 20px;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .trust-grid {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .trust-item {
+            padding: 20px;
+        }
+        
+        .trust-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .trust-item h4 {
+            color: var(--color-primary-green);
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .trust-item p {
+            color: var(--color-text-light);
+            font-size: 14px;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--color-cream);
+            padding: var(--section-padding);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: var(--color-white);
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--color-primary-green);
+            transition: background-color 0.3s;
+        }
+        
+        .faq-question:hover {
+            background-color: var(--color-cream);
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            color: var(--color-gold);
+            font-weight: 300;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 25px;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 25px 20px;
+        }
+        
+        .faq-answer p {
+            color: var(--color-text-dark);
+            line-height: 1.8;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 18px;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--color-text-dark);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        .value-proposition {
+            background-color: var(--color-white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .value-proposition h3 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-green);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .value-proposition ul {
+            list-style: none;
+        }
+        
+        .value-proposition li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--color-text-dark);
+        }
+        
+        .value-proposition li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--color-gold);
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        /* ============================================
+           HOW IT WORKS SECTION
+           ============================================ */
+        
+        .how-it-works {
+            background-color: var(--color-white);
+            padding: var(--section-padding);
+        }
+        
+        .journey-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .journey-card {
+            background-color: var(--color-cream);
+            padding: 35px;
+            border-radius: 15px;
+            border: 2px solid var(--color-border);
+        }
+        
+        .journey-card h3 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-green);
+            font-size: 28px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step {
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .step-number {
+            background-color: var(--color-gold);
+            color: var(--color-white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-content h4 {
+            color: var(--color-primary-green);
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        
+        .step-content p {
+            color: var(--color-text-light);
+            font-size: 15px;
+        }
+        
+        /* ============================================
+           ANALYTICS SECTION
+           ============================================ */
+        
+        .analytics-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--color-text-dark);
+        }
+        
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background-color: var(--color-white);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .feature-card:hover::before {
+            left: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(45, 80, 22, 0.15);
+            border-color: var(--color-gold);
+        }
+        
+        .feature-card-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-card-image {
+            transform: scale(1.05);
+        }
+        
+        .feature-card h3 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-green);
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: var(--color-text-light);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        /* ============================================
+           INSIGHTS SECTION
+           ============================================ */
+        
+        .insights-section {
+            background-color: var(--color-white);
+            padding: var(--section-padding);
+        }
+        
+        .insights-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+        
+        .insights-visuals {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .visual-card {
+            background-color: var(--color-cream);
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid var(--color-border);
+        }
+        
+        .visual-card h3 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-green);
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        .chart-placeholder {
+            height: 200px;
+            background: linear-gradient(135deg, var(--color-light-green), var(--color-gold));
+            border-radius: 8px;
+            position: relative;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+        
+        .chart-bar {
+            background-color: var(--color-white);
+            margin: 0 5px;
+            border-radius: 4px 4px 0 0;
+            flex: 1;
+            animation: growBar 1s ease-out;
+        }
+        
+        @keyframes growBar {
+            from { height: 0; }
+        }
+        
+        .chart-bar:nth-child(1) { height: 30%; }
+        .chart-bar:nth-child(2) { height: 45%; }
+        .chart-bar:nth-child(3) { height: 60%; }
+        .chart-bar:nth-child(4) { height: 75%; }
+        .chart-bar:nth-child(5) { height: 90%; }
+        
+        .ecosystem-wheel {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .ecosystem-item {
+            background-color: var(--color-white);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid var(--color-gold);
+        }
+        
+        .ecosystem-item h4 {
+            color: var(--color-primary-green);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .ecosystem-item p {
+            font-size: 13px;
+            color: var(--color-text-light);
+        }
+        
+        /* ============================================
+           KPI METRICS SECTION
+           ============================================ */
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .kpi-card {
+            background-color: var(--color-white);
+            padding: 35px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .kpi-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.05), transparent);
+            transition: width 0.4s ease;
+            border-radius: 15px;
+        }
+        
+        .kpi-card:hover::after {
+            width: 100%;
+        }
+        
+        .kpi-card:hover {
+            transform: translateY(-8px) translateX(5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .kpi-card:nth-child(1) { border-left-color: #2d5016; }
+        .kpi-card:nth-child(2) { border-left-color: #4a7c2a; }
+        .kpi-card:nth-child(3) { border-left-color: #c9a961; }
+        .kpi-card:nth-child(4) { border-left-color: #d97706; }
+        .kpi-card:nth-child(5) { border-left-color: #2d5016; }
+        .kpi-card:nth-child(6) { border-left-color: #4a7c2a; }
+        
+        .kpi-card h3 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-green);
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .kpi-card .subtext {
+            color: var(--color-text-light);
+            font-size: 14px;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .kpi-card .academic-note {
+            font-size: 12px;
+            color: var(--color-gold);
+            font-style: italic;
+            margin-top: 10px;
+        }
+        
+        /* ============================================
+           CHANNELS SECTION
+           ============================================ */
+        
+        .channels-section {
+            background-color: var(--color-white);
+            padding: var(--section-padding);
+        }
+        
+        .channels-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .channel-card {
+            background-color: var(--color-cream);
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid var(--color-border);
+            text-align: center;
+        }
+        
+        .channel-card h3 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-green);
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .channel-card .examples {
+            margin-top: 15px;
+            font-size: 14px;
+            color: var(--color-text-light);
+        }
+        
+        .channel-card .examples strong {
+            color: var(--color-primary-green);
+        }
+        
+        /* ============================================
+           BENEFITS SECTION
+           ============================================ */
+        
+        .benefits-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .benefits-card {
+            background-color: var(--color-white);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefits-card h3 {
+            font-family: var(--font-heading);
+            color: var(--color-primary-green);
+            font-size: 26px;
+            margin-bottom: 25px;
+        }
+        
+        .benefits-card ul {
+            list-style: none;
+        }
+        
+        .benefits-card li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--color-text-dark);
+            font-size: 16px;
+        }
+        
+        .benefits-card li::before {
+            content: "🌿";
+            position: absolute;
+            left: 0;
+            font-size: 18px;
+        }
+        
+        /* ============================================
+           TESTIMONIALS SECTION
+           ============================================ */
+        
+        .testimonials-section {
+            background-color: var(--color-white);
+            padding: var(--section-padding);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--color-primary-green);
+        }
+        
+        .testimonial-text {
+            color: var(--color-text-dark);
+            font-style: italic;
+            line-height: 1.7;
+        }
+        
+        .testimonials-note {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 13px;
+            color: var(--color-text-light);
+            font-style: italic;
+        }
+        
+        /* ============================================
+           CONTACT FORM SECTION
+           ============================================ */
+        
+        .contact-section {
+            background: linear-gradient(135deg, var(--color-primary-green), var(--color-light-green));
+            color: var(--color-white);
+            padding: var(--section-padding);
+        }
+        
+        .contact-section .section-title,
+        .contact-section .section-subtitle {
+            color: var(--color-white);
+        }
+        
+        .contact-form-container {
+            max-width: 900px;
+            margin: 40px auto 0;
+            background-color: var(--color-white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .google-form-wrapper {
+            width: 100%;
+            height: 0;
+            padding-bottom: 1400px; /* Adjust based on your form height */
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .google-form-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+        
+        .form-note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: var(--color-text-light);
+            font-style: italic;
+        }
+        
+        .form-instructions {
+            background-color: var(--color-cream);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--color-gold);
+        }
+        
+        .form-instructions h4 {
+            color: var(--color-primary-green);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .form-instructions p {
+            color: var(--color-text-dark);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .form-instructions code {
+            background-color: var(--color-white);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--color-primary-green);
+        }
+        
+        /* ============================================
+           FOOTER
+           ============================================ */
+        
+        .footer {
+            background-color: var(--color-primary-green);
+            color: var(--color-white);
+            padding: 50px 20px 30px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+        }
+        
+        .footer h3 {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            max-width: 200px;
+            height: auto;
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-info {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .footer-nav a {
+            color: var(--color-white);
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-nav a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        .footer-bottom {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-primary-green);
+            color: var(--color-white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+        
+        .scroll-to-top:hover {
+            background-color: var(--color-light-green);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .scroll-to-top.visible {
+            display: flex;
+        }
+        
+        /* Improved Testimonials */
+        .testimonial-card {
+            background-color: var(--color-cream);
+            padding: 35px;
+            border-radius: 15px;
+            border-left: 4px solid var(--color-gold);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 60px;
+            color: var(--color-gold);
+            opacity: 0.2;
+            font-family: var(--font-heading);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        
+        @media (max-width: 968px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero .subheading {
+                font-size: 18px;
+            }
+            
+            .about-content,
+            .journey-container,
+            .benefits-container,
+            .insights-visuals {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-cards,
+            .kpi-grid,
+            .channels-grid,
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .stats-container,
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .logo span {
+                display: none;
+            }
+            
+            .logo img {
+                height: 35px;
+            }
+            
+            .hero-logo img {
+                max-width: 200px;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .feature-cards,
+            .kpi-grid,
+            .channels-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-container,
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-number {
+                font-size: 36px;
+            }
+            
+            .contact-form-container {
+                padding: 25px;
+            }
+            
+            .google-form-wrapper {
+                padding-bottom: 1600px; /* Adjust for mobile if needed */
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================
+         NAVIGATION BAR
+         Edit menu items and logo text here
+         ============================================ -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <img src="logo.png" alt="AYUVOYAGE Logo">
+                <span>AYUVOYAGE</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#analytics">Analytics</a></li>
+                <li><a href="#insights">KPIs</a></li>
+                <li><a href="#channels">Channels</a></li>
+                <li><a href="#benefits">For Patients</a></li>
+                <li><a href="#benefits">For Partners</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-toggle">☰</button>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         HERO SECTION
+         Edit heading, subheading, and CTA text here
+         ============================================ -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="logo.png" alt="AYUVOYAGE Logo">
+            </div>
+            <h1>AYUVOYAGE – Travel, Heal, and Rebalance</h1>
+            <p class="subheading">
+                Connect with India's top Ayurvedic and mental-health healing centers.<br>
+                Analytics-powered platform bridging wellness seekers with verified treatment centers.
+            </p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Plan My Healing Journey</a>
+                <a href="#contact" class="btn btn-secondary">Partner With Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ABOUT SECTION
+         Edit text content in paragraphs and value proposition list
+         ============================================ -->
+    <section id="about" class="section">
+        <h2 class="section-title">About AYUVOYAGE</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    AYUVOYAGE is your <strong>trusted liaison</strong> connecting international patients with 
+                    <strong>verified Ayurvedic hospitals and retreats</strong> across India.
+                </p>
+                <p>
+                    We solve the complexity of medical tourism by combining <strong>traditional Ayurvedic wisdom</strong> 
+                    with <strong>modern analytics</strong> to match you with the perfect healing center.
+                </p>
+            </div>
+            <div class="value-proposition">
+                <h3>Key Value Proposition</h3>
+                <ul>
+                    <li>Verified partner Ayurvedic and mental-health centers</li>
+                    <li>Transparent, curated treatment packages</li>
+                    <li>Custom itineraries combining healing, travel, and cultural experiences</li>
+                    <li>Analytics-driven targeting and demand forecasting</li>
+                    <li>Seamless end-to-end support for international clients</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         STATISTICS SECTION
+         Edit numbers and labels as needed
+         ============================================ -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item fade-in">
+                <span class="stat-number" data-target="50">0</span>
+                <span class="stat-label">Partner Centers</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number" data-target="500">0</span>
+                <span class="stat-label">Patients Served</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number" data-target="25">0</span>
+                <span class="stat-label">Countries Reached</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number" data-target="95">0</span>
+                <span class="stat-label">% Satisfaction Rate</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         HOW IT WORKS SECTION
+         Edit step descriptions for both journeys
+         ============================================ -->
+    <section id="how-it-works" class="section how-it-works">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Two seamless journeys for wellness seekers and partner hospitals</p>
+        
+        <div class="journey-container">
+            <!-- For Patients Journey -->
+            <div class="journey-card">
+                <h3>🌿 For Wellness Seekers (Patients)</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Share Your Wellness Goals</h4>
+                        <p>Tell us your wellness objectives: stress relief, mental health, detox, chronic pain, or general wellness.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Analysis & Matching</h4>
+                        <p>We analyze your preferences, budget, and dates to match you with the perfect treatment center.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Curated Itineraries</h4>
+                        <p>Receive personalized itineraries combining treatments, travel, and cultural experiences.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>End-to-End Support</h4>
+                        <p>Full support before, during, and after your journey for a seamless experience.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- For Partners Journey -->
+            <div class="journey-card">
+                <h3>🏥 For Partner Hospitals/Retreats</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>List Your Services</h4>
+                        <p>Register your services and define your target patient segments.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Analytics-Driven Targeting</h4>
+                        <p>We use analytics to identify global audiences matching your services.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Targeted Campaigns</h4>
+                        <p>Data-driven campaigns across multiple channels to generate qualified leads.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Continuous Insights</h4>
+                        <p>Ongoing analytics on enquiries, seasonality, conversions, and performance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ANALYTICS-DRIVEN APPROACH SECTION
+         Edit feature card descriptions here
+         ============================================ -->
+    <section id="analytics" class="section">
+        <h2 class="section-title">Analytics-Driven Approach</h2>
+        <p class="analytics-intro">
+            We use <strong>data analytics</strong> to optimize patient matching and campaign performance through 
+            segmentation, targeted marketing, and demand forecasting.
+        </p>
+        
+        <div class="feature-cards">
+            <div class="feature-card">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" 
+                     alt="Data Analytics and Segmentation" 
+                     class="feature-card-image"
+                     loading="lazy">
+                <h3>Segmentation Engine</h3>
+                <p>
+                    Categorizes clients by demographics, wellness goals, budget, and travel preferences for 
+                    precise matching and personalized messaging.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" 
+                     alt="Targeted Marketing Campaigns" 
+                     class="feature-card-image"
+                     loading="lazy">
+                <h3>Targeted Campaigns</h3>
+                <p>
+                    Tailored campaigns across search, social, and partner channels with segment-specific messaging 
+                    to maximize engagement and conversions.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop&q=80" 
+                     alt="Demand Forecasting Analytics" 
+                     class="feature-card-image"
+                     loading="lazy">
+                <h3>Demand Forecasting</h3>
+                <p>
+                    Predicts peak demand and treatment preferences using historical data and seasonal patterns, 
+                    helping partners optimize capacity and pricing.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ANALYTICAL INSIGHTS SECTION
+         Edit chart descriptions and ecosystem items
+         ============================================ -->
+    <section id="insights" class="section insights-section">
+        <h2 class="section-title">Analytical Insights</h2>
+        <p class="insights-intro">
+            Medical tourism interest is growing, but a gap exists between India's capacity and patient inflow. 
+            AYUVOYAGE bridges this through analytics and verified partnerships.
+        </p>
+        
+        <div class="insights-visuals">
+            <!-- Search Trend Card -->
+            <div class="visual-card">
+                <h3>Search Trend Analysis</h3>
+                <div class="chart-placeholder">
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                    <div class="chart-bar"></div>
+                </div>
+                <p style="font-size: 14px; color: var(--color-text-light); text-align: center;">
+                    Monthly search volume for medical tourism related terms has increased significantly over the past years (2021-2025).
+                </p>
+            </div>
+            
+            <!-- Ecosystem Wheel -->
+            <div class="visual-card">
+                <h3>Medical Tourism Ecosystem</h3>
+                <div class="ecosystem-wheel">
+                    <div class="ecosystem-item">
+                        <h4>🔍 Search Engines</h4>
+                        <p>SEO-optimized content and targeted ads for medical tourism keywords</p>
+                    </div>
+                    <div class="ecosystem-item">
+                        <h4>📱 Social Media</h4>
+                        <p>Engaging content and targeted campaigns on platforms like Facebook, Instagram, and LinkedIn</p>
+                    </div>
+                    <div class="ecosystem-item">
+                        <h4>🛒 Shopping/Platforms</h4>
+                        <p>Listings on medical tourism directories and travel platforms</p>
+                    </div>
+                    <div class="ecosystem-item">
+                        <h4>🤖 AI Models</h4>
+                        <p>Optimized content for AI-powered search and recommendation systems</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         KPI METRICS SECTION
+         Edit KPI descriptions and values here
+         ============================================ -->
+    <section id="kpis" class="section">
+        <h2 class="section-title">Key Performance Indicators</h2>
+        <p class="section-subtitle">Metrics that demonstrate our analytics-driven approach</p>
+        
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <h3>Number of Leads</h3>
+                <p class="subtext">
+                    Mock inquiries and clicks from digital campaigns.
+                </p>
+                <p class="academic-note">
+                    Demonstrates campaign reach and targeting.
+                </p>
+            </div>
+            
+            <div class="kpi-card">
+                <h3>Conversion Rate</h3>
+                <p class="subtext">
+                    Percentage of leads converted based on case data.
+                </p>
+                <p class="academic-note">
+                    Shows funnel analytics understanding.
+                </p>
+            </div>
+            
+            <div class="kpi-card">
+                <h3>Engagement Rate</h3>
+                <p class="subtext">
+                    Likes, shares, and comments on social media content.
+                </p>
+                <p class="academic-note">
+                    Measures content resonance and interest.
+                </p>
+            </div>
+            
+            <div class="kpi-card">
+                <h3>Demographic Segmentation</h3>
+                <p class="subtext">
+                    Breakdown by age, nationality, and wellness interests.
+                </p>
+                <p class="academic-note">
+                    Illustrates segmentation and tailored marketing.
+                </p>
+            </div>
+            
+            <div class="kpi-card">
+                <h3>Ad Cost Estimate</h3>
+                <p class="subtext">
+                    Cost per click (CPC) and cost per lead estimates.
+                </p>
+                <p class="academic-note">
+                    Links marketing spend to ROI.
+                </p>
+            </div>
+            
+            <div class="kpi-card">
+                <h3>Satisfaction Proxy</h3>
+                <p class="subtext">
+                    Patient feedback scores from case reviews.
+                </p>
+                <p class="academic-note">
+                    Measures patient experience quality.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         DIGITAL CHANNELS SECTION
+         Edit channel descriptions and example phrases
+         ============================================ -->
+    <section id="channels" class="section channels-section">
+        <h2 class="section-title">Digital Channels We Focus On</h2>
+        <p class="section-subtitle">Multi-channel approach for maximum reach and engagement</p>
+        
+        <div class="channels-grid">
+            <div class="channel-card">
+                <h3>🔍 Search Engines</h3>
+                <p>
+                    Optimized content and targeted campaigns for medical tourism and Ayurvedic treatment searches.
+                </p>
+                <div class="examples">
+                    <strong>Example phrases:</strong><br>
+                    "medical tourism to India"<br>
+                    "Ayurveda medical tourism"
+                </div>
+            </div>
+            
+            <div class="channel-card">
+                <h3>🛒 Shopping / Platforms</h3>
+                <p>
+                    Listings on medical tourism directories, travel platforms, and healthcare marketplaces.
+                </p>
+                <div class="examples">
+                    <strong>Example phrases:</strong><br>
+                    "medical tourism villages"<br>
+                    "directory of medical tourism in India"<br>
+                    "medical and dental tourism"
+                </div>
+            </div>
+            
+            <div class="channel-card">
+                <h3>📱 Social Media</h3>
+                <p>
+                    Engaging content and targeted campaigns on platforms where wellness seekers connect.
+                </p>
+                <div class="examples">
+                    <strong>Example phrases:</strong><br>
+                    "medical tourism to India"<br>
+                    "India medical tourism"
+                </div>
+            </div>
+            
+            <div class="channel-card">
+                <h3>🤖 AI Models</h3>
+                <p>
+                    Content optimized for AI-powered search and recommendation systems.
+                </p>
+                <div class="examples">
+                    <strong>Example prompts:</strong><br>
+                    "Best countries for affordable medical tourism from India"<br>
+                    "How to find reputed medical tourism agencies in India"
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         BENEFITS SECTION
+         Edit benefit lists for both audiences
+         ============================================ -->
+    <section id="benefits" class="section">
+        <h2 class="section-title">Benefits</h2>
+        <div class="benefits-container">
+            <div class="benefits-card">
+                <h3>For International Clients</h3>
+                <ul>
+                    <li>Trusted, verified Ayurvedic and mental-health centers</li>
+                    <li>Customized wellness itineraries tailored to your needs</li>
+                    <li>Transparent information on treatments and packages</li>
+                    <li>Comprehensive support with travel logistics and cultural orientation</li>
+                    <li>End-to-end assistance from inquiry to post-treatment follow-up</li>
+                </ul>
+            </div>
+            
+            <div class="benefits-card">
+                <h3>For Partner Hospitals & Retreats</h3>
+                <ul>
+                    <li>Access to global leads through targeted marketing campaigns</li>
+                    <li>Analytics-based segmentation and demand insights</li>
+                    <li>Improved campaign efficiency and ROI through data-driven strategies</li>
+                    <li>Strengthened brand visibility in overseas markets</li>
+                    <li>Continuous performance tracking and optimization recommendations</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TRUST INDICATORS SECTION
+         Edit trust points as needed
+         ============================================ -->
+    <section class="trust-section">
+        <div class="trust-grid">
+            <div class="trust-item fade-in">
+                <span class="trust-icon">✓</span>
+                <h4>Verified Centers</h4>
+                <p>All partner hospitals and retreats are thoroughly verified and certified</p>
+            </div>
+            <div class="trust-item fade-in">
+                <span class="trust-icon">🔒</span>
+                <h4>Secure & Confidential</h4>
+                <p>Your personal information and medical data are protected with industry-standard security</p>
+            </div>
+            <div class="trust-item fade-in">
+                <span class="trust-icon">🌍</span>
+                <h4>Global Reach</h4>
+                <p>Serving clients from over 25 countries with multilingual support</p>
+            </div>
+            <div class="trust-item fade-in">
+                <span class="trust-icon">⭐</span>
+                <h4>5-Star Service</h4>
+                <p>End-to-end support from inquiry to post-treatment follow-up</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TESTIMONIALS SECTION
+         Edit testimonial names, countries, and text
+         ============================================ -->
+    <section class="section testimonials-section">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <span class="testimonial-name">Priya Sharma, Mumbai 🇮🇳</span>
+                </div>
+                <p class="testimonial-text">
+                    "AYUVOYAGE helped me find the perfect Ayurvedic retreat for stress management. The entire 
+                    process was smooth, and the support team was incredibly helpful throughout my journey."
+                </p>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <span class="testimonial-name">Rajesh Kumar, Delhi 🇮🇳</span>
+                </div>
+                <p class="testimonial-text">
+                    "As someone dealing with chronic anxiety, finding the right mental health support was crucial. 
+                    AYUVOYAGE connected me with an excellent center, and the experience was transformative."
+                </p>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <span class="testimonial-name">Anjali Patel, Bangalore 🇮🇳</span>
+                </div>
+                <p class="testimonial-text">
+                    "The personalized itinerary combined healing treatments with cultural experiences. It was 
+                    exactly what I needed for a holistic wellness journey. Highly recommended!"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FAQ SECTION
+         Edit questions and answers as needed
+         ============================================ -->
+    <section id="faq" class="section faq-section">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Everything you need to know about AYUVOYAGE</p>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">How does AYUVOYAGE verify partner hospitals and retreats?</div>
+                <div class="faq-answer">
+                    <p>We conduct thorough due diligence on all partner centers, including verification of certifications, medical licenses, patient reviews, and facility inspections. Only centers meeting our strict quality standards are accepted as partners.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What types of treatments are available through AYUVOYAGE?</div>
+                <div class="faq-answer">
+                    <p>We offer Ayurvedic treatments including stress management, mental health therapy, detox, chronic pain management, and general wellness. All provided by certified practitioners.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How long does the process take from inquiry to treatment?</div>
+                <div class="faq-answer">
+                    <p>We match you with treatment centers within 48-72 hours. The complete process, including itinerary and travel arrangements, takes 2-4 weeks.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do you provide support during the treatment period?</div>
+                <div class="faq-answer">
+                    <p>Yes, we provide full support throughout your journey. Our team assists with travel logistics, cultural orientation, and is available 24/7 during your stay. We also conduct follow-up consultations after your return.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What makes AYUVOYAGE different from other medical tourism platforms?</div>
+                <div class="faq-answer">
+                    <p>We combine traditional Ayurvedic expertise with modern analytics to match you with the most suitable centers. Our data-driven approach personalizes recommendations based on your goals, budget, and preferences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTACT FORM SECTION
+         Edit form fields and validation as needed
+         ============================================ -->
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Start Your AYUVOYAGE Journey</h2>
+        <p class="section-subtitle">
+            Share your details and our team will design a personalized healing and travel plan.
+        </p>
+        
+        <div class="contact-form-container">
+            <!-- 
+                INSTRUCTIONS TO ADD YOUR GOOGLE FORM:
+                1. Go to Google Forms (forms.google.com)
+                2. Create a new form with the following fields:
+                   - Full Name (Short answer, Required)
+                   - Country of Residence (Short answer, Required)
+                   - Email (Short answer, Required)
+                   - WhatsApp / Phone Number (Short answer, Required)
+                   - I am: (Multiple choice: "A wellness seeker" / "A hospital/retreat", Required)
+                   - Preferred Focus: (Multiple choice: Stress Management, Detox, Mental Health Therapy, Chronic Pain, General Wellness, Other, Required)
+                   - Approximate Budget (Multiple choice: Under $5,000, $5,000 - $10,000, etc., Required)
+                   - Tentative Travel Dates (Short answer, Required)
+                   - Message / Special Requirements (Paragraph, Optional)
+                3. Click "Send" button (top right)
+                4. Click the "</>" (embed) icon
+                5. Copy the iframe code
+                6. Replace the iframe code below with your Google Form embed code
+                7. Adjust the padding-bottom value in .google-form-wrapper CSS (line ~1410) to match your form height
+            -->
+            
+            <div class="google-form-wrapper">
+                <!-- Google Form Embed - AYUVOYAGE Contact Form -->
+                <!-- Published Form: https://docs.google.com/forms/d/e/1FAIpQLScwHuVSvVGHtIeNksCJTSVOtkGCfwFAvuw8CEq7tL3Cebmo6A/viewform -->
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScwHuVSvVGHtIeNksCJTSVOtkGCfwFAvuw8CEq7tL3Cebmo6A/viewform?embedded=true" 
+                        width="100%" 
+                        height="1400" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0">Loading…</iframe>
+            </div>
+            
+            <p class="form-note">
+                All form submissions will be collected and our team will contact you shortly.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         Edit group member names and course details
+         ============================================ -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.png" alt="AYUVOYAGE Logo">
+            </div>
+            <h3>AYUVOYAGE</h3>
+            <p class="footer-info">
+                Medical Tourism Facilitation Platform<br>
+                Connecting wellness seekers with verified Ayurvedic and mental-health centers across India.
+            </p>
+            
+            <nav class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#analytics">Analytics</a>
+                <a href="#insights">KPIs</a>
+                <a href="#channels">Channels</a>
+                <a href="#benefits">Benefits</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 AYUVOYAGE. Academic Project Prototype.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT
+         Smooth scroll behavior
+         ============================================ -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 70;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    const navMenu = document.querySelector('.nav-menu');
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                this.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+            });
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                if (mobileMenuToggle) {
+                    mobileMenuToggle.textContent = '☰';
+                }
+            }
+        });
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Statistics counter animation
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            };
+            
+            updateCounter();
+        }
+        
+        // Observe statistics section
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        if (!stat.classList.contains('counted')) {
+                            stat.classList.add('counted');
+                            animateCounter(stat);
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+        
+        // FAQ accordion functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+        
+        // Scroll to Top Button
+        const scrollToTopBtn = document.createElement('button');
+        scrollToTopBtn.className = 'scroll-to-top';
+        scrollToTopBtn.innerHTML = '↑';
+        scrollToTopBtn.setAttribute('aria-label', 'Scroll to top');
+        document.body.appendChild(scrollToTopBtn);
+        
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+</html>
